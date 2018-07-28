@@ -4,6 +4,8 @@
 
 - PHP其他扩展。
 
+- Larvel
+
 - MySQL数据库基础。
 
 - MySQL数据库优化。
