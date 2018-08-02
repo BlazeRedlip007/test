@@ -1,0 +1,8 @@
+- HTML
+- Javascript
+- webpack
+- boostrap
+- vue
+- sass/less
+- mobilepage
+- jquery
