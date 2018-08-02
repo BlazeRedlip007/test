@@ -4,7 +4,7 @@
 
 - PHP其他扩展。
 
-- Larvel
+- Laravel
 
 - MySQL数据库基础。
 
