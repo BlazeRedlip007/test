@@ -247,7 +247,7 @@ Linux下源码安装软件果然一波三折，这次给出的错误提示是：
 
     make install
 
-这个```make install```执行会很快就结束。最后在/usr/local/目录会找到nginx的可执行文件。至此编译安装结束。
+这个```make install```执行会很快就结束。最后在/usr/local/目录会找到nginx的软件目录。至此编译安装结束。
 
 ## 总结
 
