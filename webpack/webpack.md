@@ -1,0 +1,1 @@
+webpackJsonp与webpack异步加载文件的功能有关。如何将插件单独打包？

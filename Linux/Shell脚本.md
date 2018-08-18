@@ -5,3 +5,10 @@
     chmod +x 文件名
 
 赋予可执行权限。当然，用```chmod -x 文件名```可以去除授予的可执行权限。
+
+# linux在shell中执行命令并将结果赋值给变量
+
+    #!/bin/bash
+    envlocation=`pwd`
+    echo $envlocation
+    unset envlocation
