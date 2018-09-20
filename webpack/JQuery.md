@@ -1,0 +1,1 @@
+跨域请求jqueryCallback定义？服务器端如何配合？

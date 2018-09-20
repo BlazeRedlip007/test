@@ -29,5 +29,9 @@ MySQL 有两种方法可以创建用户。
 1. ```CREATE USER``` 或 ```GRANT```
 2. INSERT, UPDATE, DELETE
 
-    CREATE USER 'remoteyong'@'%' IDENTIFIED BY 'xqg8787785552cccsiau2890';
+    CREATE USER 'remoteyong'@'%' IDENTIFIED BY 'xqg8787785552cccsiau2897';
     GRANT ALL PRIVILEGES ON *.* TO 'finley'@'%' WITH GRANT OPTION;
+
+# 修改字段类型
+
+    ALTER TABLE article MODIFY body LONGYEXY NOT NULL DEFAULT '';
