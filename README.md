@@ -1,3 +1,5 @@
-### 这里是用来测试的repo。克隆这个其实毫无意义。然而你喜欢就随便了。
+# 用于学习 - Use to study
 
-### 反正测试用的随便玩，随便操作这个repo我无所谓。懒得搭理你。
+# 可能不会长期保存 - It's not a long time repo.
+
+# 喜欢的话自己fork - fork if you want to keep it.
