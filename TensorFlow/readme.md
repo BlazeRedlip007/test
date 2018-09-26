@@ -233,3 +233,115 @@
 上面一句话是测试模型性能的。到此为止，大概流程过了一遍。编写一个神经网络至少需要哪些东西已经齐全。
 
 晚安。
+
+----------
+
+接着上次的写。由于加载数据失败，这里不加载了。
+
+	#!/usr/bin/env python3
+	# -*- coding: UTF-8 -*-
+	
+	import tensorflow as tf
+	
+	model = tf.keras.models.Sequential([
+	  tf.keras.layers.Flatten(),
+	  tf.keras.layers.Dense(512, activation=tf.nn.relu),
+	  tf.keras.layers.Dropout(0.2),
+	  tf.keras.layers.Dense(10, activation=tf.nn.softmax)
+	])
+	model.compile(optimizer='adam',
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+
+Error
+
+	Traceback (most recent call last):
+	  File "model.py", line 11, in <module>
+	    tf.keras.layers.Dense(10, activation=tf.nn.softmax)
+	  File "D:\Program Files\python\lib\site-packages\tensorflow\python\keras\_impl\keras
+	\models.py", line 439, in __init__
+	    self.add(layer)
+	  File "D:\Program Files\python\lib\site-packages\tensorflow\python\keras\_impl\keras
+	\models.py", line 482, in add
+	    raise ValueError('The first layer in a '
+	ValueError: The first layer in a Sequential model must get an `input_shape` argu
+	ment.
+
+吐槽，这部分都是官网的代码居然会出问题，原因：没定义```input_shape```。修改后：
+
+	#!/usr/bin/env python3
+	# -*- coding: UTF-8 -*-
+	
+	import tensorflow as tf
+	
+	# 别名：tf.keras.models.Sequential
+	model = tf.keras.Sequential([
+	  tf.keras.layers.Flatten(input_shape = (3, 32, 32)),
+	  tf.keras.layers.Dense(512, activation = tf.nn.relu),
+	  tf.keras.layers.Dropout(0.2),
+	  tf.keras.layers.Dense(10, activation = tf.nn.softmax)
+	])
+	
+	# keep_dims is deprecated, use keepdims instead 这个这里没用到不管它了
+	model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
+
+## 自定义模型和模型的训练
+
+这里定义网络没问题了。写一个异或的来训练一下：
+
+    #!/usr/bin/env python3
+    # -*- coding: UTF-8 -*-
+
+    import tensorflow as tf
+
+    # 准备数据
+    trainInput = [
+      [[0, 0]],
+      [[0, 1]],
+      [[1, 0]],
+      [[1, 1]]
+    ]
+    trainOutput = [
+      [[0]],
+      [[1]],
+      [[1]],
+      [[0]]
+    ]
+
+    # 顺序层
+    model = tf.keras.Sequential([
+      # 去tf.keras.layers里面找神经网络层，第一个是输入层
+      tf.keras.layers.Dense(2, tf.keras.activations.tanh, 1, input_shape = (1, 2)),
+      tf.keras.layers.Dense(1, tf.keras.activations.sigmoid, 1)
+    ])
+    # 配置网络的优化算法和误差算法，tf.keras下找optimizer和loss
+    model.compile(
+      optimizer = 'Adam',
+      loss = 'MSE',
+      metrics = ['accuracy']
+    )
+
+    # 开始训练，第5个参数是0，关闭进度条
+    model.fit(trainInput, trainOutput, 4, 15000, 0);
+    # 打印预测结果
+    print(model.predict(trainInput));
+
+    # 保存模型，需要h5py。pip3 install --upgrade h5py
+    model.save('xor.h5');
+
+    # 加载模型使用model = tf.keras.models.load_model('xor.h5')
+
+
+输出的预测结果是
+
+    [[[0.00373096]]
+
+     [[0.9945686 ]]
+
+     [[0.9954489 ]]
+
+     [[0.00281842]]]
+
+代码里面15000次是从小到大试出来的，运行一次1分钟以内可以结束。
+
+至此，简单的模型训练和使用方法完，可以简单玩耍了。
