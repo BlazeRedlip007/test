@@ -26,7 +26,7 @@ model.compile(
 )
 
 # 开始训练，第5个参数是0，关闭进度条
-model.fit(trainInput, trainOutput, 4, 15000, 0);
+model.fit(trainInput, trainOutput, 1, 100, 0);
 # 打印预测结果
 print(model.predict(trainInput));
 
